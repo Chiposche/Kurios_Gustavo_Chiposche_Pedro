@@ -129,6 +129,13 @@ addEventListener('fetch', function (event) {
     return
   }
 
+  // EDITADO (reaplicar depois de `npx msw init public/`): navegações vão
+  // direto pra rede — não temos handler de documento e reemitir a navegação
+  // com init dentro do worker falha com "Failed to fetch"
+  if (event.request.mode === 'navigate') {
+    return
+  }
+
   // Bypass all requests when there are no active clients.
   // Prevents the self-unregistered worked from handling requests
   // after it's been terminated (still remains active until the next reload).

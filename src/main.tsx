@@ -12,7 +12,31 @@ async function startApp() {
   if (mswEnabled) {
     try {
       const { worker } = await import('../mocks/browser')
-      await worker.start()
+      await worker.start({
+        // Requests fora da API (documento, assets) seguem direto pra rede
+        // sem avisar; requests de /api sem handler continuam avisando
+        onUnhandledFrame: ({ frame, defaults }) => {
+          const url = (frame.data as { request?: Request } | undefined)?.request?.url
+          if (url?.includes('/api/')) defaults.warn()
+        },
+      })
+
+      // Primeira instalação: o start() resolve na ativação, mas o
+      // clients.claim() pode ainda não ter tomado a página — sem esperar,
+      // as primeiras chamadas escapam do MSW e só o F5 resolvia
+      if (!navigator.serviceWorker.controller) {
+        await new Promise<void>((resolve) => {
+          const timer = window.setTimeout(resolve, 2000)
+          navigator.serviceWorker.addEventListener(
+            'controllerchange',
+            () => {
+              window.clearTimeout(timer)
+              resolve()
+            },
+            { once: true },
+          )
+        })
+      }
     } catch (error) {
       // Sem o service worker a API devolve o HTML do rewrite; o Axios sinaliza
       // o erro e as telas mostram o feedback de recarga (em vez de tela branca)
