@@ -79,7 +79,7 @@ function CatalogSection() {
           />
           <button
             type="submit"
-            className="shrink-0 bg-[#D4944C] text-black px-5 py-2.5 rounded-full text-sm font-bold hover:bg-[#E0A55D] transition-colors"
+            className="shrink-0 bg-[#D4944C] text-black px-3 sm:px-5 py-2.5 rounded-full text-sm font-bold hover:bg-[#E0A55D] transition-colors whitespace-nowrap"
           >
             Buscar
           </button>
