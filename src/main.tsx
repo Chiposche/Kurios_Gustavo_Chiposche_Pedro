@@ -20,36 +20,6 @@ async function startApp() {
           if (url?.includes('/api/')) defaults.warn()
         },
       })
-
-      // Primeira instalação: o start() resolve na ativação, mas o
-      // clients.claim() pode ainda não ter tomado a página — sem esperar,
-      // as primeiras chamadas escapam do MSW e só o F5 resolvia.
-      // Timeout de 5s pra dar tempo em cold starts; se ainda não controlou,
-      // recarrega a página uma única vez (sessionStorage evita loop)
-      if (!navigator.serviceWorker.controller) {
-        await new Promise<void>((resolve) => {
-          const timer = window.setTimeout(() => {
-            if (!navigator.serviceWorker.controller && !sessionStorage.getItem('msw_reload')) {
-              sessionStorage.setItem('msw_reload', '1')
-              window.location.reload()
-              return
-            }
-            sessionStorage.removeItem('msw_reload')
-            resolve()
-          }, 5000)
-          navigator.serviceWorker.addEventListener(
-            'controllerchange',
-            () => {
-              window.clearTimeout(timer)
-              sessionStorage.removeItem('msw_reload')
-              resolve()
-            },
-            { once: true },
-          )
-        })
-      } else {
-        sessionStorage.removeItem('msw_reload')
-      }
     } catch (error) {
       // Sem o service worker a API devolve o HTML do rewrite; o Axios sinaliza
       // o erro e as telas mostram o feedback de recarga (em vez de tela branca)

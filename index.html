@@ -9,7 +9,12 @@
     <title>KURIO - NFT Marketplace</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Splash enquanto o JS carrega — React substitui ao montar -->
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#1A1412">
+        <p style="color:#D4944C;font-family:monospace;font-size:1.25rem;letter-spacing:0.15em">KURIO</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
