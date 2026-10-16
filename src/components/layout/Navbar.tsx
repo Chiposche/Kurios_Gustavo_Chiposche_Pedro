@@ -190,35 +190,32 @@ export function Navbar() {
       )}
 
       {/* Bottom Tab Bar Mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1A1412] border-t border-[#3A2A20] flex items-center justify-around py-2 z-50">
-        <Link to="/" className={`flex flex-col items-center gap-1 text-xs ${isHome ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`}>
-          <Home size={20} />
-          <span>Início</span>
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1A1412] border-t border-[#3A2A20] flex items-center justify-around py-3 z-50">
+        <Link to="/" className={`p-2 ${isHome ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`} aria-label="Início">
+          <Home size={22} />
         </Link>
-        <Link to="/marketplace" className={`flex flex-col items-center gap-1 text-xs ${isMarketplace ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`}>
-          <Store size={20} />
-          <span>Mercado</span>
+        <Link
+          to="/favorites"
+          className={`p-2 ${location.pathname === '/favorites' ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`}
+          aria-label="Favoritos"
+        >
+          <Heart size={22} />
         </Link>
-        <Link to="/cart" className="flex flex-col items-center gap-1" aria-label="Carrinho">
-          <div className="bg-[#D4944C] rounded-full p-3 -mt-4 relative">
-            <ShoppingCart size={20} className="text-black" />
+        <Link to="/cart" className="relative -mt-6" aria-label="Carrinho">
+          <div className="bg-[#D4944C] rounded-full p-4 border-4 border-[#1A1412]">
+            <ShoppingCart size={22} className="text-black" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-white text-black text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1 bg-white text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                 {cartCount}
               </span>
             )}
           </div>
         </Link>
-        <Link
-          to="/favorites"
-          className={`flex flex-col items-center gap-1 text-xs ${location.pathname === '/favorites' ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`}
-        >
-          <Heart size={20} />
-          <span>Favoritos</span>
+        <Link to="/marketplace" className={`p-2 ${isMarketplace ? 'text-[#D4944C]' : 'text-[#A78B6E]'}`} aria-label="Mercado">
+          <Store size={22} />
         </Link>
-        <Link to={isAuthenticated ? '/profile' : '/login'} className="flex flex-col items-center gap-1 text-[#A78B6E] text-xs">
-          <User size={20} />
-          <span>Perfil</span>
+        <Link to={isAuthenticated ? '/profile' : '/login'} className="p-2 text-[#A78B6E]" aria-label="Perfil">
+          <User size={22} />
         </Link>
       </div>
     </>
