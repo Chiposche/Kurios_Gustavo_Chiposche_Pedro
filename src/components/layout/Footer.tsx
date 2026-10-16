@@ -68,9 +68,9 @@ export function Footer() {
             <input
               type="email"
               placeholder="digite seu e-mail..."
-              className="flex-1 bg-[#2A1F1A] border border-[#3A2A20] rounded px-3 py-2 text-white text-sm placeholder-[#A78B6E] focus:outline-none focus:border-[#D4944C] focus-visible:ring-2 focus-visible:ring-[#D4944C]"
+              className="min-w-0 flex-1 bg-[#2A1F1A] border border-[#3A2A20] rounded px-3 py-2 text-white text-sm placeholder-[#A78B6E] focus:outline-none focus:border-[#D4944C] focus-visible:ring-2 focus-visible:ring-[#D4944C]"
             />
-            <button className="bg-[#D4944C] text-black px-4 py-2 rounded text-sm font-medium hover:bg-[#E0A55D] transition-colors">
+            <button className="shrink-0 bg-[#D4944C] text-black px-4 py-2 rounded text-sm font-medium hover:bg-[#E0A55D] transition-colors">
               Enviar
             </button>
           </div>
