@@ -28,7 +28,7 @@ test.describe('Acessibilidade e teclado', () => {
     await page.waitForURL(/\/nft\//)
 
     // Espera o detalhe carregar
-    await page.waitForSelector('img', { timeout: 10000 })
+    await page.waitForSelector('img:visible', { timeout: 10000 })
 
     // Verifica se existe um dialog role na página ao interagir
     const hasDialog = await page.locator('[role="dialog"]').count()
@@ -110,7 +110,7 @@ test.describe('Acessibilidade e teclado', () => {
 
     await page.locator('a[href*="/nft/"]').first().click()
     await page.waitForURL(/\/nft\//)
-    await page.waitForSelector('img', { timeout: 10000 })
+    await page.waitForSelector('img:visible', { timeout: 10000 })
 
     // Agora ativa o modo de erro para o toggle de favorito
     await page.evaluate(() => {

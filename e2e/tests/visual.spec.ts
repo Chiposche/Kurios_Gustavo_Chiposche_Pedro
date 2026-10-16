@@ -23,7 +23,7 @@ test.describe('Regressão visual', () => {
     await page.locator('a[href*="/nft/"]').first().click()
     await page.waitForURL(/\/nft\//)
     // Espera o detalhe carregar completamente
-    await page.waitForSelector('img', { timeout: 10000 })
+    await page.waitForSelector('img:visible', { timeout: 10000 })
     await page.waitForTimeout(500)
     await expect(page).toHaveScreenshot('nft-detail.png', { fullPage: true, maxDiffPixelRatio: 0.05 })
   })

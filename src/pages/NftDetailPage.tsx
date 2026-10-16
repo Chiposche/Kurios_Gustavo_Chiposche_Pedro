@@ -5,7 +5,7 @@ import { nftsApi } from '../api/endpoints/nfts'
 import { cartApi } from '../api/endpoints/cart'
 import { favoritesApi } from '../api/endpoints/favorites'
 import { useAuth } from '../hooks/useAuth'
-import { Heart, Minus, Plus, ChevronLeft, ShoppingCart } from 'lucide-react'
+import { Heart, Minus, Plus, ChevronLeft, ShoppingCart, Mail, Share2, Link2 } from 'lucide-react'
 import { Skeleton } from '../components/ui/skeleton'
 
 // Página de detalhes do NFT
@@ -169,7 +169,40 @@ export function NftDetailPage() {
                 />
               </button>
             </div>
-            <div className="relative">
+
+            {/* Desktop: thumbnails + imagem principal */}
+            <div className="hidden md:flex gap-3">
+              <div className="flex flex-col gap-2 shrink-0">
+                {[0, 1, 2, 3].map((i) => (
+                  <img
+                    key={i}
+                    src={nft.image}
+                    alt={`${nft.name} miniatura ${i + 1}`}
+                    className={`w-16 h-16 rounded-lg object-cover cursor-pointer border-2 transition-opacity ${
+                      i === 0 ? 'border-[#D4944C]' : 'border-transparent opacity-60 hover:opacity-100'
+                    }`}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = `https://placehold.co/64x64/2A1F1A/D4944C?text=NFT`
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="flex-1">
+                <img
+                  src={nft.image}
+                  alt={nft.name}
+                  width={600}
+                  height={600}
+                  className="w-full rounded-2xl"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = `https://placehold.co/600x600/2A1F1A/D4944C?text=${encodeURIComponent(nft.name)}`
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Mobile: só a imagem grande */}
+            <div className="md:hidden">
               <img
                 src={nft.image}
                 alt={nft.name}
@@ -281,6 +314,18 @@ export function NftDetailPage() {
               <p className="text-[#A78B6E]">
                 <span className="text-[#C4956A]">Atributos:</span> {nft.attributes.join(', ')}
               </p>
+              <div className="flex items-center gap-3 mt-2">
+                <span className="text-[#C4956A] font-bold">Compartilhar este NFT:</span>
+                <a href="#" className="text-[#A78B6E] hover:text-[#D4944C]" aria-label="Compartilhar link" onClick={(e) => e.preventDefault()}>
+                  <Link2 size={16} />
+                </a>
+                <a href="#" className="text-[#A78B6E] hover:text-[#D4944C]" aria-label="Enviar por email" onClick={(e) => e.preventDefault()}>
+                  <Mail size={16} />
+                </a>
+                <a href="#" className="text-[#A78B6E] hover:text-[#D4944C]" aria-label="Compartilhar" onClick={(e) => e.preventDefault()}>
+                  <Share2 size={16} />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -164,28 +164,27 @@ export function HomePage() {
     <div className="pb-20 md:pb-0">
       {/* Hero Section */}
       <section className="px-4 md:px-8 py-8 md:py-16">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1">
-            <p className="text-[#C4956A] text-sm mb-2">Bem-vindo à Kurio</p>
-            <h1 className="font-mono text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
-              SEJA DONO DO FUTURO<br className="hidden sm:block" />DA ARTE DIGITAL
+        <div className="max-w-6xl mx-auto flex flex-row items-center gap-4 md:gap-8">
+          <div className="flex-1 min-w-0">
+            <p className="text-[#C4956A] text-xs sm:text-sm mb-2">Bem-vindo à Kurio</p>
+            <h1 className="font-mono text-xl sm:text-3xl md:text-5xl font-bold text-white leading-tight mb-3 md:mb-4">
+              SEJA DONO DA CULTURA DIGITAL
             </h1>
-            <p className="text-[#A78B6E] text-sm sm:text-base mb-6 max-w-md">
-              Descubra NFTs selecionados de criadores emergentes e consagrados.
-              Colecione arte digital rara, apoie artistas e tenha uma parte da cultura da internet.
+            <p className="text-[#A78B6E] text-xs sm:text-sm md:text-base mb-4 md:mb-6 max-w-md">
+              Descubra NFTs selecionados de criadores do mundo todo.
             </p>
             <Link
               to="/marketplace"
-              className="inline-block border border-white text-white px-6 py-3 rounded font-mono text-sm hover:bg-white hover:text-black transition-colors"
+              className="inline-flex items-center gap-2 border border-white text-white px-4 sm:px-6 py-2 sm:py-3 rounded font-mono text-xs sm:text-sm hover:bg-white hover:text-black transition-colors"
             >
-              EXPLORAR
+              EXPLORAR <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="flex-1 flex justify-center">
+          <div className="shrink-0">
             <img
               src="/assets/nfts/emerald-ape.svg"
               alt="NFT em destaque - Emerald Ape"
-              className="w-48 sm:w-64 md:w-80 rounded-2xl shadow-2xl"
+              className="w-28 sm:w-48 md:w-80 rounded-2xl shadow-2xl"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = 'https://placehold.co/400x400/2A1F1A/D4944C?text=NFT'
               }}

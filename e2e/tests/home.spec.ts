@@ -9,7 +9,7 @@ test.describe('Página Inicial', () => {
 
   test('deve exibir o hero e seções educativas', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('text=SEJA DONO DO FUTURO')).toBeVisible()
+    await expect(page.locator('text=SEJA DONO DA CULTURA DIGITAL')).toBeVisible()
     await expect(page.locator('text=O que são NFTs?')).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Como funciona', exact: true })).toBeVisible()
   })
